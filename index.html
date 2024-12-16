@@ -1,6 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+        <!-- Cronitor RUM -->
+<script async src="https://rum.cronitor.io/script.js"></script>
+<script>
+    window.cronitor = window.cronitor || function() { (window.cronitor.q = window.cronitor.q || []).push(arguments); };
+    cronitor('config', { clientKey: '3ac6a65332b823e7f74824031bffc562' });
+</script>
+
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     
@@ -54,13 +61,6 @@
         "description": "Quickly check if a movie is good or bad based on real-time ratings from TMDb. Search movies and get instant feedback on their quality."
       }
     </script>
-    <!-- Cronitor RUM -->
-<script async src="https://rum.cronitor.io/script.js"></script>
-<script>
-    window.cronitor = window.cronitor || function() { (window.cronitor.q = window.cronitor.q || []).push(arguments); };
-    cronitor('config', { clientKey: '3ac6a65332b823e7f74824031bffc562' });
-</script>
-
   </head>
 
   <body>
