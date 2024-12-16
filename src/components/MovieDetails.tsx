@@ -10,7 +10,9 @@ interface MovieDetailsProps {
 }
 
 export const MovieDetails = ({ movie, isOpen, onClose }: MovieDetailsProps) => {
-  const ratingCategory = getMovieRatingCategory(movie.vote_average); // Update here
+  // Ensure vote_average is valid or default to 0
+  const voteAverage = movie.vote_average ?? 0;
+  const ratingCategory = getMovieRatingCategory(voteAverage); // Get the rating category
   const year = movie.release_date ? new Date(movie.release_date).getFullYear() : "N/A";
 
   return (
@@ -55,9 +57,11 @@ export const MovieDetails = ({ movie, isOpen, onClose }: MovieDetailsProps) => {
                   <div className={`inline-flex items-center px-4 py-2 rounded-full text-sm font-semibold shadow-lg ${
                     ratingCategory === "Worth Watching"
                       ? "bg-emerald-500/40 text-emerald-200 border border-emerald-500/50 shadow-emerald-500/30" 
+                      : ratingCategory === "Give It a Chance"
+                      ? "bg-yellow-500/40 text-yellow-200 border border-yellow-500/50 shadow-yellow-500/30"
                       : "bg-red-500/40 text-red-200 border border-red-500/50 shadow-red-500/30"
                   }`}>
-                    {ratingCategory === "Worth Watching" ? "Worth Watching" : "Skip It"}
+                    {ratingCategory}
                   </div>
                 </motion.div>
                 
@@ -66,7 +70,7 @@ export const MovieDetails = ({ movie, isOpen, onClose }: MovieDetailsProps) => {
                   <div className="flex items-center gap-2">
                     <Star className="h-5 w-5 text-primary animate-pulse" />
                     <div className="text-2xl font-bold text-foreground flex items-baseline gap-1">
-                      {movie.vote_average.toFixed(1)}
+                      {voteAverage.toFixed(1)}
                       <span className="text-sm text-muted-foreground">/10</span>
                     </div>
                   </div>

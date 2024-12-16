@@ -11,9 +11,8 @@ export const MovieCard = ({ movie, onClick }: MovieCardProps) => {
   const year = movie.release_date ? new Date(movie.release_date).getFullYear() : "N/A";
   
   // Handle the vote_average, fallback to 0 if it's undefined
-  const voteAverage = movie.vote_average ?? 0; // Default to 0 if undefined
-  const ratingCategory = getMovieRatingCategory(voteAverage); // Get the rating category
-  
+  const voteAverage = movie.vote_average ?? 0; // Default to 0 if undefined or null
+  const ratingCategory = getMovieRatingCategory(voteAverage); // Get the rating category  
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}

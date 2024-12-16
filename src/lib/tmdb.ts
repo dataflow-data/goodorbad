@@ -47,9 +47,12 @@ export const getImageUrl = (path: string) => {
 };
 
 export const getMovieRatingCategory = (rating: number) => {
-  if (rating >= 7.0) {
+  // Ensure rating is a valid number
+  const validRating = typeof rating === 'number' && !isNaN(rating) ? rating : 0;
+
+  if (validRating >= 7.0) {
     return "Worth Watching"; // Movies with rating 7.0 or above
-  } else if (rating >= 4.0) {
+  } else if (validRating >= 4.0) {
     return "Give It a Chance"; // Movies with rating between 4.0 and 6.9
   } else {
     return "Skip It"; // Movies with rating between 1.0 and 3.9
