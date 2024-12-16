@@ -46,4 +46,12 @@ export const getImageUrl = (path: string) => {
   return `${IMAGE_BASE_URL}${path}`;
 };
 
-export const isMovieGood = (rating: number) => rating >= 6.0;
+export const getMovieRatingCategory = (rating: number) => {
+  if (rating >= 7.0) {
+    return "Worth Watching"; // Movies with rating 7.0 or above
+  } else if (rating >= 4.0) {
+    return "Give It a Chance"; // Movies with rating between 4.0 and 6.9
+  } else {
+    return "Skip It"; // Movies with rating between 1.0 and 3.9
+  }
+};

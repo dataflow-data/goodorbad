@@ -40,15 +40,17 @@ const Index = () => {
   });
 
   useEffect(() => {
+
     toast({
-      title: "Welcome! 👋",
+      title: "Welcome to our website! 👋",
       description: (
         <div className="flex items-center gap-2">
           <Film className="h-5 w-5 text-primary animate-pulse" />
-          <span>Press '/' to search or 'ESC' to close dialogs</span>
+          <span>Press '/' to start searching or 'ESC' to close dialogs.</span>
         </div>
       ),
     });
+
   }, []);
 
   return (
@@ -84,7 +86,8 @@ const Index = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2 }}
           >
-            Find out if a movie is worth your time. Quick, simple, honest ratings.
+            Is this movie a waste of time? Find out quickly with honest ratings and all the facts to know whether it’s worth your attention or not."
+
           </motion.p>
           <div className="relative max-w-2xl mx-auto">
             <SearchBar
@@ -106,8 +109,8 @@ const Index = () => {
               className="flex items-center justify-center gap-2 text-sm text-muted-foreground mt-4 hover:text-primary transition-colors"
             >
               <Search className="h-4 w-4" />
-              <p>Press '/' to focus search</p>
-            </motion.div>
+              <p>Press '/' to start searching for movies</p>
+                          </motion.div>
           )}
         </motion.div>
 
@@ -118,7 +121,7 @@ const Index = () => {
             className="flex justify-center items-center space-x-2"
           >
             <Loader2 className="h-6 w-6 animate-spin text-primary" />
-            <span className="text-muted-foreground">Finding movies...</span>
+            <span className="text-muted-foreground">Fetching movie data...</span>
           </motion.div>
         )}
 
@@ -131,9 +134,9 @@ const Index = () => {
             <Alert className="bg-secondary/50 backdrop-blur-sm border-secondary">
               <Info className="h-5 w-5 text-muted-foreground" />
               <AlertDescription className="text-center py-4">
-                <p className="text-lg font-medium mb-2">No movies found</p>
+                <p className="text-lg font-medium mb-2">Oops! No results found</p>
                 <p className="text-muted-foreground">
-                  Try adjusting your search or use different keywords
+                Try broadening your search or adjusting your keywords.
                 </p>
               </AlertDescription>
             </Alert>
@@ -182,20 +185,34 @@ const Index = () => {
       </div>
 
       <footer className="w-full py-6 px-4 mt-auto bg-secondary/30 backdrop-blur-sm border-t border-secondary">
-        <div className="container mx-auto">
-          <motion.p 
-            className="flex items-center justify-center gap-2 text-muted-foreground hover:text-foreground transition-colors"
-            whileHover={{ scale: 1.02 }}
-          >
-            Built with{" "}
-            <Heart className="text-red-500 animate-pulse" size={16} />{" "}
-            by{" "}
-            <span className="text-primary hover:text-primary/80 transition-colors">
-              Dataflow
-            </span>
-          </motion.p>
-        </div>
-      </footer>
+  <div className="container mx-auto">
+    <motion.p 
+      className="flex items-center justify-center gap-2 text-muted-foreground hover:text-foreground transition-colors"
+      whileHover={{ scale: 1.02 }}
+    >
+      Built with{" "}
+      <Heart className="text-blue-500 animate-pulse" size={16} />{" "}
+      by{" "}
+      <span className="text-primary hover:text-primary/80 transition-colors">
+        Dataflow
+      </span>
+    </motion.p>
+
+{/* TMDB Attribution */}
+<div className="text-center mt-4 text-xs text-muted-foreground">
+  <p>
+    Data and images provided under{" "}
+    <a 
+      href="https://www.themoviedb.org/" 
+      target="_blank" 
+      className="text-primary hover:text-primary/80 transition-colors"
+    >
+      TMDb – The Movie Database
+    </a>
+  </p>
+</div>
+  </div>
+</footer>
     </div>
   );
 };

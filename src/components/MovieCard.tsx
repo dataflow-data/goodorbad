@@ -1,4 +1,4 @@
-import { Movie, getImageUrl, isMovieGood } from "@/lib/tmdb";
+import { Movie, getImageUrl, getMovieRatingCategory } from "@/lib/tmdb";
 import { motion } from "framer-motion";
 
 interface MovieCardProps {
@@ -7,8 +7,12 @@ interface MovieCardProps {
 }
 
 export const MovieCard = ({ movie, onClick }: MovieCardProps) => {
+  // Handle the release year, fallback to "N/A" if it's not available
   const year = movie.release_date ? new Date(movie.release_date).getFullYear() : "N/A";
-  const isGood = isMovieGood(movie.vote_average);
+  
+  // Handle the vote_average, fallback to 0 if it's undefined
+  const voteAverage = movie.vote_average ?? 0; // Default to 0 if undefined
+  const ratingCategory = getMovieRatingCategory(voteAverage); // Get the rating category
   
   return (
     <motion.div
@@ -34,12 +38,18 @@ export const MovieCard = ({ movie, onClick }: MovieCardProps) => {
         <motion.div 
           whileHover={{ scale: 1.05 }}
           className={`inline-flex items-center px-3 py-1.5 rounded-full text-sm font-semibold shadow-lg backdrop-blur-md ${
-            isGood 
+            ratingCategory === "Worth Watching" 
               ? "bg-emerald-500/40 text-emerald-200 border border-emerald-500/50 shadow-emerald-500/30" 
+              : ratingCategory === "Give It a Chance" 
+              ? "bg-yellow-500/40 text-yellow-200 border border-yellow-500/50 shadow-yellow-500/30"
               : "bg-red-500/40 text-red-200 border border-red-500/50 shadow-red-500/30"
           }`}
         >
-          {isGood ? "Worth Watching" : "Skip It"}
+          {ratingCategory === "Worth Watching" 
+            ? "Definitely Worth Watching!" 
+            : ratingCategory === "Give It a Chance" 
+            ? "Give It a Chance" 
+            : "Maybe Skip This One"}
         </motion.div>
       </div>
 
@@ -48,7 +58,7 @@ export const MovieCard = ({ movie, onClick }: MovieCardProps) => {
         <div className="flex items-center justify-between">
           <p className="text-sm text-muted-foreground">{year}</p>
           <span className="text-sm font-medium text-primary">
-            {movie.vote_average.toFixed(1)}/10
+            {voteAverage ? voteAverage.toFixed(1) : "N/A"}/10
           </span>
         </div>
       </div>

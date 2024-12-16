@@ -1,5 +1,5 @@
 import { Dialog, DialogContent } from "@/components/ui/dialog";
-import { Movie, getImageUrl, isMovieGood } from "@/lib/tmdb";
+import { Movie, getImageUrl, getMovieRatingCategory } from "@/lib/tmdb";
 import { motion } from "framer-motion";
 import { X, Star } from "lucide-react";
 
@@ -10,7 +10,7 @@ interface MovieDetailsProps {
 }
 
 export const MovieDetails = ({ movie, isOpen, onClose }: MovieDetailsProps) => {
-  const isGood = isMovieGood(movie.vote_average);
+  const ratingCategory = getMovieRatingCategory(movie.vote_average); // Update here
   const year = movie.release_date ? new Date(movie.release_date).getFullYear() : "N/A";
 
   return (
@@ -53,11 +53,11 @@ export const MovieDetails = ({ movie, isOpen, onClose }: MovieDetailsProps) => {
                   className="mb-6"
                 >
                   <div className={`inline-flex items-center px-4 py-2 rounded-full text-sm font-semibold shadow-lg ${
-                    isGood 
+                    ratingCategory === "Worth Watching"
                       ? "bg-emerald-500/40 text-emerald-200 border border-emerald-500/50 shadow-emerald-500/30" 
                       : "bg-red-500/40 text-red-200 border border-red-500/50 shadow-red-500/30"
                   }`}>
-                    {isGood ? "Worth Watching" : "Skip It"}
+                    {ratingCategory === "Worth Watching" ? "Worth Watching" : "Skip It"}
                   </div>
                 </motion.div>
                 
