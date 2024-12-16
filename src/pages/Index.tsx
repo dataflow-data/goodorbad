@@ -69,15 +69,31 @@ const Index = () => {
           >
             <Film className="h-12 w-12 text-primary animate-pulse" />
             <h1 className="text-6xl font-bold">
-              <span className="bg-clip-text text-transparent bg-gradient-to-r from-primary via-primary/80 to-primary/60 drop-shadow-sm [text-shadow:_0_1px_3px_rgb(0_0_0_/_20%)] relative">
-                Is It{" "}
-                <span className="relative inline-block">
-                  Good
-                  <span className="absolute -bottom-1 left-0 right-0 h-[2px] bg-gradient-to-r from-primary/0 via-primary/50 to-primary/0"></span>
-                </span>
-                ?
-              </span>
-            </h1>
+  <span
+    className="relative inline-block"
+    style={{
+      backgroundImage: 'linear-gradient(to right, #3b82f6, #9333ea)', // Adjust these colors to match your design
+      WebkitBackgroundClip: 'text',
+      color: 'transparent',
+      textShadow: '0 0 5px rgba(0, 0, 0, 0.2)', // Optional: slight shadow for contrast
+    }}
+  >
+    Is It{" "}
+    <span
+      className="relative inline-block"
+      style={{
+        backgroundImage: 'linear-gradient(to right, #3b82f6, #9333ea)', // Same gradient as above
+        WebkitBackgroundClip: 'text',
+        color: 'transparent',
+        textShadow: '0 0 5px rgba(0, 0, 0, 0.2)', // Optional shadow for the inner word
+      }}
+    >
+      Good
+      <span className="absolute -bottom-1 left-0 right-0 h-[2px] bg-gradient-to-r from-primary/0 via-primary/50 to-primary/0"></span>
+    </span>
+    ?
+  </span>
+</h1>
           </motion.div>
 
           <motion.p 
