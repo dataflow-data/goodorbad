@@ -20,6 +20,6 @@ export default defineConfig(({ mode }) => ({
     },
   },
   build: {
-    outDir: 'dist', // specify the build output directory
+    outDir: 'dist/client', // update to match Netlify's expectation
   },
 }));
